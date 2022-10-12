@@ -1,6 +1,9 @@
-const Author = ({ author, genre }) => {
+const Author = ({ author, genre, fetchAuthorQuotes }) => {
 	return (
-		<button className='author w-full text-left flex justify-between items-center gap-2'>
+		<button
+			className='author w-full text-left flex justify-between items-center gap-2'
+			onClick={fetchAuthorQuotes}
+		>
 			<div className='flex flex-col gap-2'>
 				<span className='text-2xl font-bold'>{author}</span>
 				<span className='text-sm font-light'>{genre}</span>

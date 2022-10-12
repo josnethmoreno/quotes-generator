@@ -20,8 +20,10 @@ function App() {
 		})
 	}
 
-	const fetchAuthorQuotes = () => {
-		console.log('funciono')
+	const fetchAuthorQuotes = async () => {
+		await getAuthorQuotes().then((data) => {
+			console.log(data)
+		})
 	}
 
 	useEffect(() => {
@@ -31,7 +33,7 @@ function App() {
 	return (
 		<div className='container mx-auto px-4 min-h-screen flex justify-center items-center gap-[4rem]'>
 			<div className='fixed container top-0 w-full flex justify-end py-4 font-light'>
-				<Random fetchAuthor={fetchAuthorQuotes}></Random>
+				<Random fetchRandomQuote={fetchRandomQuote}></Random>
 			</div>
 			{!viewlist ? (
 				<div className='max-w-prose flex flex-col gap-[8rem] py-12'>
@@ -39,6 +41,7 @@ function App() {
 					<Author
 						author={authorQuote}
 						genre={genreQuote}
+						fetchAuthorQuotes={fetchAuthorQuotes}
 					></Author>
 				</div>
 			) : (

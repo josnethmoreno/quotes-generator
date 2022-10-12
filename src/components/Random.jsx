@@ -1,8 +1,8 @@
-const Random = ({ fetchAuthor }) => {
+const Random = ({ fetchRandomQuote }) => {
 	return (
 		<button
 			className='flex gap-3 items-center'
-			onClick={fetchAuthor}
+			onClick={fetchRandomQuote}
 		>
 			Random
 			<svg

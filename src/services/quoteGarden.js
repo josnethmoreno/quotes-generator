@@ -7,7 +7,7 @@ const getRandomQuote = () => {
 }
 
 const getAuthorQuotes = (author) => {
-	return fetch(API + 'authors')
+	return fetch('https://quote-garden.herokuapp.com/api/v3/authors/')
 		.then((res) => res.json())
 		.then((data) => data)
 }
