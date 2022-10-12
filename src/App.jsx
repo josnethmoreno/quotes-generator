@@ -59,6 +59,18 @@ function App() {
 					))}
 				</div>
 			)}
+			<div className='fixed container bottom-0 w-full flex justify-end py-4 font-light'>
+				<p>
+					Created by:{' '}
+					<a
+						className='font-bold underline'
+						href='https://josnethmoreno.vercel.app'
+						target='_blank'
+					>
+						Josneth Moreno
+					</a>
+				</p>
+			</div>
 		</div>
 	)
 }
