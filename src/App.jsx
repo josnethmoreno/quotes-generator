@@ -8,11 +8,13 @@ import Random from './components/Random'
 
 function App() {
 	const [viewlist, setViewList] = useState(false)
-	const [randomQuote, setRandomQuote] = useState('')
 	const [authorQuote, setAuthorQuote] = useState('')
+	const [authorQuotes, setAuthorQuotes] = useState([])
+	const [randomQuote, setRandomQuote] = useState('')
 	const [genreQuote, setGenreQuote] = useState('')
 
 	const fetchRandomQuote = async () => {
+		if (viewlist) return setViewList(false)
 		await getRandomQuote().then((data) => {
 			setRandomQuote(data.data[0].quoteText)
 			setAuthorQuote(data.data[0].quoteAuthor)
@@ -20,9 +22,10 @@ function App() {
 		})
 	}
 
-	const fetchAuthorQuotes = async () => {
-		await getAuthorQuotes().then((data) => {
-			console.log(data)
+	const fetchAuthorQuotes = async (author) => {
+		await getAuthorQuotes(author).then((data) => {
+			const quoteTexts = data.map((q) => q.quoteText)
+			setAuthorQuotes(quoteTexts)
 		})
 	}
 
@@ -42,14 +45,18 @@ function App() {
 						author={authorQuote}
 						genre={genreQuote}
 						fetchAuthorQuotes={fetchAuthorQuotes}
+						setViewList={setViewList}
 					></Author>
 				</div>
 			) : (
 				<div className='max-w-prose pt-20 flex flex-col gap-[8rem] pb-20'>
-					<h2 className='text-4xl font-bold mb-4'>Bill Gates</h2>
-					<Quote></Quote>
-					<Quote></Quote>
-					<Quote></Quote>
+					<h2 className='text-4xl font-bold mb-4'>{authorQuote}</h2>
+					{authorQuotes.map((q, i) => (
+						<Quote
+							quote={q}
+							key={i}
+						></Quote>
+					))}
 				</div>
 			)}
 		</div>

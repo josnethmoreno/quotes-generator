@@ -1,8 +1,13 @@
-const Author = ({ author, genre, fetchAuthorQuotes }) => {
+const Author = ({ author, genre, fetchAuthorQuotes, setViewList }) => {
+	const handleOnClick = () => {
+		setViewList(true)
+		fetchAuthorQuotes(author)
+	}
+
 	return (
 		<button
 			className='author w-full text-left flex justify-between items-center gap-2'
-			onClick={fetchAuthorQuotes}
+			onClick={handleOnClick}
 		>
 			<div className='flex flex-col gap-2'>
 				<span className='text-2xl font-bold'>{author}</span>
