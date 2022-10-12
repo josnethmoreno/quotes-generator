@@ -14,7 +14,7 @@ function App() {
 	const [genreQuote, setGenreQuote] = useState('')
 
 	const fetchRandomQuote = async () => {
-		if (viewlist) return setViewList(false)
+		if (viewlist) setViewList(false)
 		await getRandomQuote().then((data) => {
 			setRandomQuote(data.data[0].quoteText)
 			setAuthorQuote(data.data[0].quoteAuthor)
